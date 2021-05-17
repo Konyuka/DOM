@@ -8,8 +8,13 @@
     "hot": "mix watch --hot",
     "prod": "npm run production",
     "production": "mix --production",
-    "postinstall": "npm run prod"
+    "postinstall": "npm run prod",
+    "heroku-postbuild": "npm run build"
   },
+  "engines": {
+    "npm": "5.6.0",
+    "node": "8.10.0"
+    },
   "devDependencies": {},
   "dependencies": {
     "@inertiajs/inertia": "^0.8.7",
