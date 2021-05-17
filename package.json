@@ -7,9 +7,17 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
     },
     "devDependencies": {
+        
+    },
+    "dependencies": {
+        "@inertiajs/inertia": "^0.8.7",
+        "@inertiajs/inertia-vue": "^0.5.12",
+        "@inertiajs/progress": "^0.2.4",
+        "@tailwindcss/aspect-ratio": "^0.2.0",
+        "vue": "^2.6.12",
         "autoprefixer": "^10.2.5",
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
@@ -22,16 +30,8 @@
         "sass": "^1.32.13",
         "sass-loader": "^11.0.1",
         "tailwindcss": "^2.1.2",
-        "vue": "^2.6.12",
         "vue-loader": "^15.9.5",
         "vue-template-compiler": "^2.6.12",
         "webpack-laravel-mix-manifest": "^3.0.5"
-    },
-    "dependencies": {
-        "@inertiajs/inertia": "^0.8.7",
-        "@inertiajs/inertia-vue": "^0.5.12",
-        "@inertiajs/progress": "^0.2.4",
-        "@tailwindcss/aspect-ratio": "^0.2.0",
-        "vue": "^2.6.12"
     }
 }
