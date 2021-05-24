@@ -35,7 +35,7 @@
           <span class="mt-2">Tasks</span>
         </a>
 
-        <a href="#" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+        <a @click="reports" v-bind:class="{'bg-indigo-800': report === true, '': report === false}" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
           <!-- Heroicon name: outline/user-group -->
           <svg class="text-indigo-300 group-hover:text-white h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
           <span class="mt-2">Reports</span>
@@ -229,10 +229,11 @@
           <h1 id="primary-heading" class="sr-only">Photos</h1>
           <!-- Your content -->
 
-        <div class="p-10">
+        <div class="p-2">
           <ClientsTable v-if="clients" />
           <DomsTable v-if="doms" />
           <Task v-if="task" />
+          <Report v-if="report" />
         </div>
 
         </section>
@@ -240,8 +241,129 @@
 
       <!-- Secondary column (hidden on smaller screens) -->
       <aside class="hidden w-96 bg-white border-l border-gray-200 overflow-y-auto lg:block">
-        <!-- Your content -->
+
+        <div v-if="report" class="px-5 py-2">
+
+          <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+            <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-nowrap">
+              <div class="ml-10 mt-4">
+                <div class="flex items-center">
+                  <div class="ml-4">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                      Todays Task Timeline
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-root pt-5">
+            <ul class="-mb-8">
+
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex space-x-3">
+                    <div>
+                      <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
+                        <!-- Heroicon name: solid/thumb-up -->
+                        <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                      <div>
+                        <p class="text-sm text-gray-500">Jane Attending Task <a href="#" class="font-medium text-gray-900">Bethany Blake</a></p>
+                      </div>
+                      <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                        <time datetime="2020-09-22">08:30</time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex space-x-3">
+                    <div>
+                      <span class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                      <div>
+                        <p class="text-sm text-gray-500">Peter Completed Task <a href="#" class="font-medium text-gray-900">Martha Gardner</a></p>
+                      </div>
+                      <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                        <time datetime="2020-09-28">09:00</time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="relative pb-8">
+                  <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                  <div class="relative flex space-x-3">
+                    <div>
+                      <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
+                        <!-- Heroicon name: solid/thumb-up -->
+                        <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                      <div>
+                        <p class="text-sm text-gray-500">James Attending Task <a href="#" class="font-medium text-gray-900">Bethany Blake</a></p>
+                      </div>
+                      <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                        <time datetime="2020-09-30">10:45</time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="relative pb-8">
+                  <div class="relative flex space-x-3">
+                    <div>
+                      <span class="h-8 w-8 rounded-full bg-red-500 flex items-center justify-center ring-8 ring-white">
+                        <!-- Heroicon name: solid/check -->
+                        <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        <!-- <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg> -->
+                      </span>
+                    </div>
+                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                      <div>
+                        <p class="text-sm text-gray-500"><a href="#" class="font-medium text-gray-900">Martha</a> Appeals Task <a href="#" class="font-medium text-gray-900">Katherine Snyder</a></p>
+                      </div>
+                      <div class="text-right text-sm whitespace-nowrap text-gray-500">
+                        <time datetime="2020-10-04">13:15</time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+
       </aside>
+      
     </div>
   </div>
 </div>
@@ -254,6 +376,7 @@
 import ClientsTable from "../components/ClientsTable";
 import DomsTable from "../components/DomsTable";
 import Task from "../components/Task";
+import Report from "../components/Report";
 
 export default {
   props: [
@@ -261,10 +384,12 @@ export default {
   components: {
     ClientsTable,
     DomsTable,
-    Task
+    Task,
+    Report
   },
   data(){
     return{
+      report:true,
       task:false,
       doms:false,
       clients:false,
@@ -273,17 +398,26 @@ export default {
     }     
   },
   methods:{
+    reports(){
+      this.doms = false
+      this.clients = false
+      this.task = false
+      this.report = true
+    },
     tasks(){
+      this.report = false
       this.doms = false
       this.clients = false
       this.task = true
     },
     client(){
+      this.report = false
       this.doms = false
       this.task = false
       this.clients = true
     },
     dom(){
+      this.report = false
       this.clients = false
       this.task = false
       this.doms = true
